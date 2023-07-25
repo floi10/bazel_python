@@ -1,5 +1,6 @@
-# load("@rules_python//python:defs.bzl", "py_binary", "py_library", "py_test", "py_runtime")
-load("@pip//:requirements.bzl", "requirement")
+# load("@pip//:requirements.bzl", "requirement")
+load("@rules_python//python:defs.bzl", "py_binary", "py_library", "py_test", "py_runtime")
+
 
 py_binary(
     name = "hello_world",
@@ -25,7 +26,7 @@ py_library(
     ],
     data = [],
     visibility=["//visibility:public"],
-    deps = [requirement("pandas"),],
+    # deps = [requirement("pandas"),],
 )
 
 

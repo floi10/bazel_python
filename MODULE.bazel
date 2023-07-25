@@ -4,7 +4,7 @@ module(
 
 ##############
 
-# # Python
+# Python
 # bazel_dep(name = "rules_python", version = "0.24.0")
 # python = use_extension("@rules_python//python/extensions:python.bzl", "python")
 
@@ -13,24 +13,25 @@ module(
 # )
 # use_repo(python, "python_3_11", "python_aliases")
 
-# # Pip
-# pip = use_extension("@rules_python//python:extensions.bzl", "pip")
-# pip.parse(
-#     name = "pip",
-#     python_version="3.11",
-#     requirements_lock = "//:requirements_lock.txt",
-# )
-# use_repo(pip, "pip")
+# # # Pip
+# # pip = use_extension("@rules_python//python:extensions.bzl", "pip")
+# # pip.parse(
+# #     name = "pip",
+# #     python_version="3.11",
+# #     requirements_lock = "//:requirements_lock.txt",
+# # )
+# # use_repo(pip, "pip")
 
-###############
+# ###############
 
 bazel_dep(name = "rules_python", version = "0.24.0")
+bazel_dep(name = "bazel_skylib", version = "1.4.1")
 
 pip = use_extension("@rules_python//python:extensions.bzl", "pip")
 
 pip.parse(
     name = "pip",
-    requirements_lock = "//:requirements.txt",
+    requirements_lock = "//:requirements_lock.txt",
 )
 
 use_repo(pip, "pip")
