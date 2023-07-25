@@ -1,0 +1,36 @@
+module(
+    name = "python_example"
+)
+
+##############
+
+# # Python
+# bazel_dep(name = "rules_python", version = "0.24.0")
+# python = use_extension("@rules_python//python/extensions:python.bzl", "python")
+
+# python.toolchain(
+#     python_version = "3.11",
+# )
+# use_repo(python, "python_3_11", "python_aliases")
+
+# # Pip
+# pip = use_extension("@rules_python//python:extensions.bzl", "pip")
+# pip.parse(
+#     name = "pip",
+#     python_version="3.11",
+#     requirements_lock = "//:requirements_lock.txt",
+# )
+# use_repo(pip, "pip")
+
+###############
+
+bazel_dep(name = "rules_python", version = "0.24.0")
+
+pip = use_extension("@rules_python//python:extensions.bzl", "pip")
+
+pip.parse(
+    name = "pip",
+    requirements_lock = "//:requirements.txt",
+)
+
+use_repo(pip, "pip")

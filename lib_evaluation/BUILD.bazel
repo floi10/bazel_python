@@ -1,0 +1,46 @@
+# load("@rules_python//python:defs.bzl", "py_binary", "py_library", "py_test", "py_runtime")
+load("@pip//:requirements.bzl", "requirement")
+
+py_binary(
+    name = "hello_world",
+    srcs = ["scripts/hello_world.py"],
+    data = [],
+    deps = [],
+)
+
+py_binary(
+    name = "run_example",
+    srcs = ["scripts/run_example.py"],
+    data = [],
+    deps = [
+        "//lib_evaluation:lib_evaluation"
+    ],
+    imports = []
+)
+
+py_library(
+    name = "lib_evaluation",
+    srcs = [
+        "src/lib_evaluation/lib_a.py"
+    ],
+    data = [],
+    visibility=["//visibility:public"],
+    deps = [requirement("pandas"),],
+)
+
+
+py_test(
+    name = "lib_evaluation_test",
+    srcs = ["test/lib_evaluation_test.py"],
+    main = "test/lib_evaluation_test.py",
+    deps = [
+        "//lib_evaluation:lib_evaluation",
+    ],
+)
+
+
+# py_runtime(
+#     name = "project_venv",
+#     # Goal: in-built interpreter:
+#     interpreter_path = "/home/flo/projects/env_projects/bin/python",
+# )

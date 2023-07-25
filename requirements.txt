@@ -1,0 +1,5 @@
+notebook==6.5.4
+pandas==2.0.1
+pycassa==1.11.2
+pytest==7.4.0
+setuptools==59.6.0
