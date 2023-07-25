@@ -1,4 +1,4 @@
-# load("@pip//:requirements.bzl", "requirement")
+load("@pip//:requirements.bzl", "requirement")
 load("@rules_python//python:defs.bzl", "py_binary", "py_library", "py_test", "py_runtime")
 
 
@@ -16,7 +16,8 @@ py_binary(
     deps = [
         "//lib_evaluation:lib_evaluation"
     ],
-    imports = []
+    imports = [
+    ]
 )
 
 py_library(
@@ -26,7 +27,7 @@ py_library(
     ],
     data = [],
     visibility=["//visibility:public"],
-    # deps = [requirement("pandas"),],
+    deps = [requirement("pandas"),],
 )
 
 

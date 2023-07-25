@@ -24,14 +24,36 @@ module(
 
 # ###############
 
+# bazel_dep(name = "rules_python", version = "0.24.0")
+# bazel_dep(name = "bazel_skylib", version = "1.4.1")
+
+# pip = use_extension("@rules_python//python:extensions.bzl", "pip")
+
+# pip.parse(
+#     name = "pip",
+#     requirements_lock = "//:requirements.txt",
+# )
+
+# use_repo(pip, "pip")
+
+
+###
+# Update the version "0.0.0" to the release found here: 
+# https://github.com/bazelbuild/rules_python/releases.
 bazel_dep(name = "rules_python", version = "0.24.0")
-bazel_dep(name = "bazel_skylib", version = "1.4.1")
+python = use_extension("@rules_python//python/extensions:python.bzl", "python")
 
-pip = use_extension("@rules_python//python:extensions.bzl", "pip")
-
-pip.parse(
-    name = "pip",
-    requirements_lock = "//:requirements_lock.txt",
+python.toolchain(
+    python_version = "3.11",
 )
+use_repo(python, "python_3_11")
 
+
+
+pip = use_extension("@rules_python//python/extensions:pip.bzl", "pip")
+pip.parse(
+    hub_name = "pip",
+    python_version = "3.11",
+    requirements_lock = "//:requirements.txt",
+)
 use_repo(pip, "pip")
