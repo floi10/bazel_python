@@ -23,7 +23,11 @@ py_binary(
 py_library(
     name = "lib_evaluation",
     srcs = [
-        "src/lib_evaluation/lib_a.py"
+        "src/lib_evaluation/lib_a.py",
+        "src/lib_evaluation/lib_b.py"
+    ],
+    imports = [
+        "src/"
     ],
     data = [],
     visibility=["//visibility:public"],
